@@ -1,5 +1,8 @@
 def calculate_boyed_weight(l, ppf, bf):
-    return (l * ppf * bf) / 2000
+    if l<0 or ppf<0:
+        return 0
+    else:
+        return (l * ppf * bf) / 2000
 
 
 def cal_total_wt(*args):
@@ -9,9 +12,12 @@ def cal_total_wt(*args):
     return total_wt
 
 def block_ton_miles(total_depth, block_weight):
-    miles_block = total_depth * 2 / 5280
-    tons_miles_block = block_weight * miles_block
-    return tons_miles_block
+    if total_depth<0 or block_weight<0:
+        return 0
+    else:
+        miles_block = total_depth * 2 / 5280
+        tons_miles_block = block_weight * miles_block
+        return tons_miles_block
 
 
 def calculate_drill_miles(total_depth, block_weight, str_wt, ream):
@@ -80,11 +86,12 @@ def liner_miles(dp_length, dp_bw, liner_length, liner_bw, total_depth, block_wei
 
 
 def jarring_miles(dist_trav, weight_tons, strokes_per_hr, hrs_jarring):
-    distance_miles = dist_trav / 5280
-    ton_miles_per_strk = distance_miles * weight_tons
-    ton_miles_per_hour = ton_miles_per_strk * strokes_per_hr
-    total_jarring_miles = ton_miles_per_hour * hrs_jarring
+    if dist_trav<0 or strokes_per_hr<0 or hrs_jarring<0:
+        return 0
+    else:
+        distance_miles = dist_trav / 5280
+        ton_miles_per_strk = distance_miles * weight_tons
+        ton_miles_per_hour = ton_miles_per_strk * strokes_per_hr
+        total_jarring_miles = ton_miles_per_hour * hrs_jarring
 
-    return total_jarring_miles
-
-
+        return total_jarring_miles
