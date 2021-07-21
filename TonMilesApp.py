@@ -14,7 +14,7 @@ icon_photo = PhotoImage(file='images/icon.png')
 window.iconphoto(False, icon_photo)
 
 
-class MainScreen():
+class MainScreen:
     drilling_miles_total = 0
     tripping_miles_total = 0
     casing_miles_total = 0
@@ -162,7 +162,7 @@ class MainScreen():
                                     font=('serif', 14, 'bold'))
         self.bha_trip_title.grid(row=4, column=0, pady=10)
         # ----dc trip1---------------------
-        self.bha_trip_label_dc_trip1 = Label(self.canvas_frame_trip, text="dc_trip#1 (Bottom): ", fg='black',
+        self.bha_trip_label_dc_trip1 = Label(self.canvas_frame_trip, text="Drill Collars (Bottom): ", fg='black',
                                              bg='#9BA4B4')
         self.bha_trip_label_dc_trip1.grid(row=5, column=0, sticky='w', padx=5)
         self.bha_trip_text_dc_trip1 = Entry(self.canvas_frame_trip, foreground='black')
@@ -174,7 +174,7 @@ class MainScreen():
         self.dc_trip1_weight_text.insert(END, string=0)
         self.dc_trip1_weight_text.grid(row=5, column=3, sticky='w')
         # ----dc trip2---------------------
-        self.bha_trip_label_dc_trip2 = Label(self.canvas_frame_trip, text="dc_trip#2 (Top): ", fg='black', bg='#9BA4B4')
+        self.bha_trip_label_dc_trip2 = Label(self.canvas_frame_trip, text="Drill Collars (Top): ", fg='black', bg='#9BA4B4')
         self.bha_trip_label_dc_trip2.grid(row=6, column=0, sticky='w', padx=5)
         self.bha_trip_text_dc_trip2 = Entry(self.canvas_frame_trip, foreground='black')
         self.bha_trip_text_dc_trip2.insert(END, string=0)
@@ -185,7 +185,7 @@ class MainScreen():
         self.dc_trip2_weight_text.insert(END, string=0)
         self.dc_trip2_weight_text.grid(row=6, column=3, sticky='w')
         # ---------HWdp trip--------------
-        self.bha_trip_label_hwdp_trip = Label(self.canvas_frame_trip, text="HWdp_trip: ", fg='black', bg='#9BA4B4')
+        self.bha_trip_label_hwdp_trip = Label(self.canvas_frame_trip, text="HWDP: ", fg='black', bg='#9BA4B4')
         self.bha_trip_label_hwdp_trip.grid(row=7, column=0, sticky='w', padx=5)
         self.bha_trip_text_hwdp_trip = Entry(self.canvas_frame_trip, foreground='black')
         self.bha_trip_text_hwdp_trip.insert(END, string=0)
@@ -300,8 +300,9 @@ class MainScreen():
         self.dp_weight_text = Entry(self.canvas_frame_liner, foreground='black', width=5)
         self.dp_weight_text.insert(END, string=0)
         self.dp_weight_text.grid(row=3, column=3, sticky='w', pady=10)
-        self.liner_note_label = Label(self.canvas_frame_liner, text="Note: Total includes miles gained during POOH DP. ",
-                           fg='#14274E', bg='#9BA4B4')
+        self.liner_note_label = Label(self.canvas_frame_liner,
+                                      text="Note: Total includes miles gained during POOH DP. ",
+                                      fg='#14274E', bg='#9BA4B4')
         self.liner_note_label.grid(row=4, column=0, columnspan=3, sticky='w', padx=5, pady=10)
         # ---------------------------------------------------------------
         # -----------------------JARRING UI ELEMENTS AND GRIDS, ENTRIES-------------------------------
@@ -454,7 +455,7 @@ class MainScreen():
     # ------------------------------FUNCTIONS-------------------------------------------------------------
     def store_ton_miles_data(self):  # --> This commits the data to the CSV.
 
-        self.comments = self.comments_box.get('1.0', END)
+        self.comments = self.comments_box.get('1.0', "end-1c")
         rig_name_entered = self.rig_name_entry.get()
         self.get_total_miles()
         new_entry = [rig_name_entered, MainScreen.formatted_date, f'{MainScreen.drilling_miles_total:.2f}',
@@ -593,7 +594,7 @@ class MainScreen():
         self.change_button_colors(self.jarring_button, self.liner_button, self.casing_button,
                                   self.tripping_button, self.drilling_button)
         self.compute_jarring_button = Button(self.canvas_frame_jarring, text='Compute Jarring Miles', bg='#77ACF1',
-                                             width=30, command=self.jarring_miles_total)
+                                             width=30, command=self.jarring_ton_miles_data)
         self.compute_jarring_button.grid(row=7, column=2, sticky='w', pady=10, columnspan=3)
 
     # --------------------------------------------------------------------------------------------------------------
